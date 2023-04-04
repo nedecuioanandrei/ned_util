@@ -1,9 +1,8 @@
 import argparse
 import sys
-from ned.py.core.commands import ( 
-        init,
-        create_package,
-)
+
+from ned.py.core.commands import create_package, init
+
 
 def get_parser():
     parser = argparse.ArgumentParser()
@@ -12,10 +11,14 @@ def get_parser():
     init_parser = subparsers.add_parser(
         "init", help="Init the python3 project."
     )
-    init_parser.add_argument("--force", action="store_true", help="Override the current files.")
+    init_parser.add_argument(
+        "--force", action="store_true", help="Override the current files."
+    )
     init_parser.set_defaults(func=init)
 
-    create_package_parser = subparsers.add_parser("c-pack", help="Create a new package in the current dir.")
+    create_package_parser = subparsers.add_parser(
+        "c-pack", help="Create a new package in the current dir."
+    )
     create_package_parser.add_argument("name", help="Package name.")
     create_package_parser.set_defaults(func=create_package)
 

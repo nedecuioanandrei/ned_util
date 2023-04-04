@@ -1,6 +1,8 @@
 import argparse
 import sys
 
+from ned.projects.core.config import write_default_config
+from ned.projects.core.constants import CONFIG_PATH, list_conf
 from ned.projects.core.projects import create, delete, lst, workon
 
 
@@ -30,6 +32,19 @@ def get_parser() -> argparse.ArgumentParser:
     delete_parser = subparsers.add_parser("delete", help="Delete a project.")
     delete_parser.add_argument("name", help="Project name")
     delete_parser.set_defaults(func=delete)
+
+    generate_config_parser = subparsers.add_parser(
+        "switch-default", help="Switch to default config."
+    )
+    generate_config_parser.set_defaults(
+        func=lambda args: write_default_config(CONFIG_PATH)
+    )
+
+    list_config_parser = subparsers.add_parser(
+        "list-conf", help="List ned-p config params."
+    )
+    list_config_parser.set_defaults(func=lambda args: list_conf())
+
     return parser
 
 

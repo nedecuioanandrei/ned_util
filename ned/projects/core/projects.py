@@ -74,13 +74,11 @@ windows:
         with open(session_description, "w") as f:
             yaml.dump(data, f)
 
-    load_cmd = "tmux detach; tmuxp load -y {session_description}".format(
+    load_cmd = "tmuxp load -y {session_description}".format(
         **{
             "session_description": str(session_description),
         }
     )
-
-    print(load_cmd)
 
     subprocess.run(load_cmd, shell=True)
 
@@ -99,7 +97,9 @@ def delete(args):
     project = args.name
     project_path = p.Path(PROJECTS_DIR).joinpath(project)
     y = input(
-        "Are you sure you want to delete dir [yes/no]\n{}".format(project_path)
+        "Are you sure you want to delete dir [yes/no]\n{} ".format(
+            project_path
+        )
     )
 
     if y == "yes":

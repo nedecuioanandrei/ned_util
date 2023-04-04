@@ -1,9 +1,10 @@
-import pathlib as p 
+import pathlib as p
+
 
 def create_setup_py(force=False):
     if p.Path("./setup.py").exists() and not force:
         print("setup.pt already created")
-        return 
+        return
 
     with open("./setup.py", "w") as f:
         f.write(
@@ -12,13 +13,15 @@ setup()
         """
         )
 
+
 def create_setup_cfg(force=False):
     if p.Path("./setup.cfg").exists() and not force:
         print("setup.cfg already created")
-        return 
+        return
 
     with open("./setup.cfg", "w") as f:
-        f.write("""[metadata]
+        f.write(
+            """[metadata]
 name = {}
 version = 0.0.1 
 classifiers = 
@@ -31,16 +34,18 @@ python_requires = >= 3.10
 install_requires = 
 
 [options.entry_points]
-""")
+"""
+        )
+
 
 def create_tox_ini(force=False):
     if p.Path("./tox.ini").exists() and not force:
         print("tox.ini already created")
-        return 
-
+        return
 
     with open("./tox.ini", "w") as f:
-        f.write("""[tox]
+        f.write(
+            """[tox]
 min_version = 4.4.8
 env_list = 
     py{310,311}
@@ -76,4 +81,5 @@ deps =
     pytest-sugar
 commands = 
     pytest tests 
-""")
+"""
+        )

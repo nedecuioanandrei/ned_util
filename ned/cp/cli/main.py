@@ -1,12 +1,8 @@
 import argparse
 import sys
-from ned.cp.core.commands import (
-    list_contests,
-    create_contest,
-    join_contest,
-    list_archive,
-    archive_contest,
-)
+
+from ned.cp.core.commands import (archive_contest, create_contest,
+                                  join_contest, list_archive, list_contests)
 
 
 def get_parser():
@@ -24,7 +20,9 @@ def get_parser():
 
     join_parser = subparsers.add_parser("join", help="Join a contest.")
     join_parser.add_argument("name", help="Contest name.")
-    join_parser.add_argument("--fresh", action="store_true", help="Create a fresh session.")
+    join_parser.add_argument(
+        "--fresh", action="store_true", help="Create a fresh session."
+    )
     join_parser.set_defaults(func=join_contest)
 
     archive_contest_parser = subparsers.add_parser(
@@ -33,7 +31,9 @@ def get_parser():
     archive_contest_parser.add_argument("name", help="Contst name.")
     archive_contest_parser.set_defaults(func=archive_contest)
 
-    list_archived_parser = subparsers.add_parser("ls-arch", help="List archived parsers.")
+    list_archived_parser = subparsers.add_parser(
+        "ls-arch", help="List archived parsers."
+    )
     list_archived_parser.set_defaults(func=list_archive)
 
     makra_parser = subparsers.add_parser(
