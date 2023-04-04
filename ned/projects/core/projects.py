@@ -45,6 +45,14 @@ def workon(args):
         print("Project not found")
         return
     project_path = p.Path(PROJECTS_DIR).joinpath(project)
+    os.chdir(project_path)
+
+    if (args.kitty):
+        #subprocess.run("bash", shell=True)
+        #subprocess.run("kitty", shell=True)
+        subprocess.run("kitty -d={}".format(project_path), shell=True)
+        return
+
     tmux_session_name = "dev-{}".format(project)
     session_description = p.Path(TMUX_STORAGE).joinpath(
         "{}.yaml".format(tmux_session_name)
