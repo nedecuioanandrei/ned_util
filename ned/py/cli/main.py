@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from ned.py.core.commands import create_package, init
+from ned.py.core.commands import create_packages, init
 
 
 def get_parser():
@@ -16,11 +16,13 @@ def get_parser():
     )
     init_parser.set_defaults(func=init)
 
-    create_package_parser = subparsers.add_parser(
+    create_packages_parser = subparsers.add_parser(
         "c-pack", help="Create a new package in the current dir."
     )
-    create_package_parser.add_argument("name", help="Package name.")
-    create_package_parser.set_defaults(func=create_package)
+    create_packages_parser.add_argument(
+        "names", nargs="+", help="Package name."
+    )
+    create_packages_parser.set_defaults(func=create_packages)
 
     return parser
 

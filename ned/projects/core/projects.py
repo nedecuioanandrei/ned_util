@@ -47,9 +47,9 @@ def workon(args):
     project_path = p.Path(PROJECTS_DIR).joinpath(project)
     os.chdir(project_path)
 
-    if (args.kitty):
-        #subprocess.run("bash", shell=True)
-        #subprocess.run("kitty", shell=True)
+    if args.kitty:
+        # subprocess.run("bash", shell=True)
+        # subprocess.run("kitty", shell=True)
         subprocess.run("kitty -d={}".format(project_path), shell=True)
         return
 

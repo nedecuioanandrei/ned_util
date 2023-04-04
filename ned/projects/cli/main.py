@@ -20,7 +20,11 @@ def get_parser() -> argparse.ArgumentParser:
     workon_parser.add_argument(
         "--fresh", action="store_true", help="Refresh the tmux session."
     )
-    workon_parser.add_argument("--kitty", action="store_true", help="Start a kitty session instead of a tmux session.")
+    workon_parser.add_argument(
+        "--kitty",
+        action="store_true",
+        help="Start a kitty session instead of a tmux session.",
+    )
     workon_parser.set_defaults(func=workon)
 
     create_parser = subparsers.add_parser(

@@ -11,11 +11,11 @@ def init(args):
     create_tox_ini(force=args.force)
 
 
-def create_package(args):
-    name = args.name
-    os.makedirs("./{}".format(name), exist_ok=True)
+def create_packages(args):
+    for name in args.names:
+        os.makedirs("./{}".format(name), exist_ok=True)
 
-    if p.Path("./{}/__init__.py".format(name)).exists():
-        print("package already created")
+        if p.Path("./{}/__init__.py".format(name)).exists():
+            print("package already created")
 
-    os.mknod("./{}/__init__.py".format(name))
+        os.mknod("./{}/__init__.py".format(name))
